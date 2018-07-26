@@ -28,6 +28,15 @@ class GoSend
 		}
 	}
 
+	public function getInfo($order_no)
+	{
+		$url = $this->url . '/gojek/v2/booking/orderno/' . $order_no;
+		$response = Requests::get($url, $this->_getHeader());
+		if (isset($response->body)) {
+			return json_decode($response->body);
+		}
+	}
+
 	public function makeBooking($args = [])
 	{
 		$url = $this->url . '/gojek/booking/v3/makeBooking';
