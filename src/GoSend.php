@@ -21,7 +21,7 @@ class GoSend
 
 	public function estimate($args = [])
 	{
-		$url = $this->url . '/gojek/v3/calculate/price?' . http_build_query($args);
+		$url = $this->url . '/gokilat/v10/calculate/price?' . http_build_query($args);
 		$response = Requests::get($url, $this->_getHeader());
 		if (isset($response->body)) {
 			return json_decode($response->body);
@@ -30,7 +30,7 @@ class GoSend
 
 	public function getInfo($order_no)
 	{
-		$url = $this->url . '/gojek/v2/booking/orderno/' . $order_no;
+		$url = $this->url . '/gokilat/v10/booking/orderno/' . $order_no;
 		$response = Requests::get($url, $this->_getHeader());
 		if (isset($response->body)) {
 			return json_decode($response->body);
@@ -39,7 +39,7 @@ class GoSend
 
 	public function makeBooking($args = [])
 	{
-		$url = $this->url . '/gojek/booking/v3/makeBooking';
+		$url = $this->url . '/gokilat/v10/booking';
 		$args = json_encode($args);
 		$response = Requests::post($url, $this->_getHeader(), $args);
 		if (isset($response->body)) {
